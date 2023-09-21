@@ -15,9 +15,9 @@ tree = pd.read_csv("C:\\Users\\Acer\\Desktop\\4th year notes\\mx4023\\data or\\E
 
 plt.figure("2D")
 plt.plot(tree["bio1"], tree["bio2"])
-plt.plot(tree["bio2"], color="violet", linestyle=":", marker='o', label="whatever the fuck this is")
-plt.plot(tree["bio1"], label= "you cant see this one so why would you care")
-plt.text(4000,250, "this looks liek shit")
+plt.plot(tree["bio2"], color="violet", linestyle=":", marker='o')
+plt.plot(tree["bio1"], label= "Araucaria tree")
+plt.text(4000,250)
 plt.legend()
 #plt.show()
 plt.close()
@@ -44,7 +44,34 @@ plt.figure("barplot")
 plt.barh(tree["bio1"], tree["bio2"], tree["bio3"], yerr=tree.bio3) #yerr -  standard deviation
 plt.show()
 
-
-
 #print(tree["decimallongitude"].head())
 a =tree[tree.decimallongitude > 170]
+
+#Iceland project
+
+ice= pd.read_csv("C:\\Users\\Acer\\Downloads\\pop.csv")
+print(ice)
+
+fig = plt.figure()
+ax1 = fig.add_subplot(2,1,1, adjustable='box', aspect=0.5)
+ax2 = fig.add_subplot(2,1,2)
+
+plt.plot(ice["time"],ice["popup"],  label="Upper Limit")
+plt.plot(ice["time"], ice["result"], label="Graph Population Growth")
+plt.plot(ice["time"], ice["popdown"], label="Lower limit")
+
+plt.xlabel("Time (in decades)")
+plt.ylabel("Population (in nodes)")
+plt.legend()
+#plt.show()
+plt.close()
+
+
+
+plt.figure("regression")
+regression = pd.read_csv("C:\\Users\\Acer\\Downloads\\rosołek (1).csv")
+print(regression)
+
+plt.plot(regression["Time"], regression["Average"])
+plt.show()
+
