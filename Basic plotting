@@ -1,0 +1,50 @@
+#matplotlib.pyplot / seaborn - charts
+#pandas -tabular data
+#scikit-learn / statsmodels - machine learning
+#scipy -statistics
+#nlpk - tax data
+
+#py -m pip install "package"
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sn
+tree = pd.read_csv("C:\\Users\\Acer\\Desktop\\4th year notes\\mx4023\\data or\\Environmental_Data_Kaja.csv")
+#print(tree.head())
+#print(tree.info())
+
+plt.figure("2D")
+plt.plot(tree["bio1"], tree["bio2"])
+plt.plot(tree["bio2"], color="violet", linestyle=":", marker='o', label="whatever the fuck this is")
+plt.plot(tree["bio1"], label= "you cant see this one so why would you care")
+plt.text(4000,250, "this looks liek shit")
+plt.legend()
+#plt.show()
+plt.close()
+
+from mpl_toolkits import mplot3d
+plt.figure("3D")
+ax = plt.axes(projection = "3d") #enabling 3d axes
+ax.plot3D(tree["bio1"], tree["bio2"], tree["bio3"], "red")
+plt.xlabel("bio1")
+plt.ylabel("bio2")
+#plt.clabel("bio3")
+plt.title("Araucaria")
+#plt.show()
+plt.close()
+
+plt.figure("3D scatter")
+ax = plt.axes(projection = "3d")
+ax.scatter3D(tree["bio1"], tree["bio2"], tree["bio3"], color="pink", alpha=0.1) #alpha=transparency
+ax.scatter3D(tree["tmin1"], tree["tmin2"], tree["tmin3"], color="purple")
+#plt.show()
+plt.close()
+
+plt.figure("barplot")
+plt.barh(tree["bio1"], tree["bio2"], tree["bio3"], yerr=tree.bio3) #yerr -  standard deviation
+plt.show()
+
+
+
+#print(tree["decimallongitude"].head())
+a =tree[tree.decimallongitude > 170]
