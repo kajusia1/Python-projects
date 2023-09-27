@@ -1,0 +1,10 @@
+##find an element that appears more than n / 2 times where n is the length of the array
+
+import numpy as np
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        unique_nums = np.array(list(dict.fromkeys(nums)))
+        for i in range(len(unique_nums)):
+            if nums.count(unique_nums[i]) > len(nums)/2:
+                return unique_nums[i]
