@@ -1,25 +1,17 @@
-###Given a roman numeral, convert it to an integer
-
+#roman numerals to integers
 class Solution:
     def romanToInt(self, s: str) -> int:
         sum=[]
         total_sum =0
         s=[*s]
+
+        symbol = ['M', 'D', 'C', 'L', 'X', 'V', 'I']
+        value = [1000, 500, 100, 50, 10, 5, 1]
+        order = []  
+
         for letter in s:
-            if letter == 'M':
-                sum.append(1000)
-            elif letter == 'D':
-                sum.append(500)
-            elif letter == 'C':
-                sum.append(100)
-            elif letter == 'L':
-                sum.append(50)
-            elif letter == 'X':
-                sum.append(10)
-            elif letter == 'V':
-                sum.append(5)
-            elif letter == 'I':
-                sum.append(1)
+            sum.append(value[symbol.index(letter)])
+
         for i in range(len(sum)-1):
             if sum[i] >=  sum[i+1]:
                 total_sum = total_sum + sum[i]
@@ -27,3 +19,32 @@ class Solution:
                 total_sum = total_sum - sum[i]
         total_sum= total_sum + sum[len(sum)-1]
         return total_sum
+
+class Solution:
+    def intToRoman(self, num: int) -> str:
+        symbol = ['M', 'D', 'C', 'L', 'X', 'V', 'I']
+        value = [1000, 500, 100, 50, 10, 5, 1]
+        order = []  
+
+        for i in range(7):
+            x = num // value[i]
+            order.append(x)
+            num = num - order[i]*value[i]
+            roman = ''
+            
+        for i in range(7):
+            if order[i]==4:
+                if len(order[i-1])== 1:
+                    order[i]= symbol[i] + symbol[i-2]
+                    order[i-1] = ''
+                else:
+                    order[i]= symbol[i] + symbol[i-1]
+            else:
+                order[i]= order[i]*symbol[i]
+        
+        for i in range(len(order)):
+            if order[i]!='':
+                roman = roman + order[i]
+        
+        return roman
+    
