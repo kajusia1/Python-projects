@@ -12,9 +12,5 @@ class Solution:
 #rotate the array to the right by k steps
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
-        for j in range(k):
-            for i in range(len(nums)-1):
-                x=nums[i+1]
-                nums[i+1]=nums[i]
-                nums[i]=x 
-            print(nums)
+        nums[:] = nums[len(nums)-k::] + nums[:len(nums)-k]
+        
