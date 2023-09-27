@@ -3,12 +3,5 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:   
         s= [*re.sub('[\W_]', '', s).lower()]   # re.sub('[\W_]', '', s) removes all non-alphanumeric characters, [*str] splits str into an array of char
-    
-        for i in range(len(s)//2):
-            if s[i]==s[len(s)-1-i]:
-                continue
-            else:
-                return False 
-                break
 
-        return True
+        return True if s==s[::-1] else False
