@@ -13,4 +13,11 @@ class Solution:
 class Solution:
     def rotate(self, nums: List[int], k: int) -> None:
         nums[:] = nums[len(nums)-k::] + nums[:len(nums)-k]
+
+#remove an element
+class Solution:
+    def removeElement(self, nums: List[int], val: int) -> int:
+
+        for i in range(nums.count(val)):
+            nums.remove(val)
         
