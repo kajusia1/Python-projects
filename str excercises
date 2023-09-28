@@ -1,5 +1,4 @@
 #check if a str is a palindrome
-
 class Solution:
     def isPalindrome(self, s: str) -> bool:   
         s= [*re.sub('[\W_]', '', s).lower()]   # re.sub('[\W_]', '', s) removes all non-alphanumeric characters, [*str] splits str into an array of char
@@ -23,9 +22,19 @@ class Solution:
         return prefix
 
 # reverse the order of the words in str
-
 class Solution:
     def reverseWords(self, s: str) -> str:
         s =s.split()
         s= ' '.join(s[::-1])
         return s
+
+# fint the index of a first occurence of needle str in haystack str
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        result=re.search(needle, haystack)
+
+        if result != None:
+            return result.start()
+        else:
+            return -1
+       
