@@ -26,7 +26,7 @@ class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
         nums[::] = list(dict.fromkeys(nums))
 
-#check if str s is a subsequence of str t
+#check if str s is a subsequence of str t, s,t- lowercase
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
 
