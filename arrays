@@ -24,20 +24,4 @@ class Solution:
 #remove duplicates 
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        nums[::] = list(dict.fromkeys(nums))
-
-#check if str s is a subsequence of str t, s,t- lowercase
-class Solution:
-    def isSubsequence(self, s: str, t: str) -> bool:
-
-        for i in range(len(s)):
-            if re.search(s[i],t) != None:
-                t= t[re.search(s[i],t).start()+1:]
-                continue
-            else:
-                return False
-                break
-
-        return True
-
-        
+        nums[::] = list(dict.fromkeys(nums))        
