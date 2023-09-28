@@ -28,7 +28,7 @@ class Solution:
         s= ' '.join(s[::-1])
         return s
 
-# fint the index of a first occurence of needle str in haystack str
+# find the index of the first occurence of 'needle' str in 'haystack' str
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
         result=re.search(needle, haystack)
