@@ -5,3 +5,19 @@ class Solution:
         s= [*re.sub('[\W_]', '', s).lower()]   # re.sub('[\W_]', '', s) removes all non-alphanumeric characters, [*str] splits str into an array of char
 
         return True if s==s[::-1] else False
+
+#find the longest common prefix in the list of strings
+class Solution:
+    def longestCommonPrefix(self, s: List[str]) -> str:
+        s=sorted(s)
+
+        prefix =""
+
+        for i in range(min(len(s[0]), len(s[-1]))):
+            if s[0][0:i+1] == s[-1][0:i+1]:
+                prefix = s[0][0:i+1]
+                continue
+            else:
+                break
+
+        return prefix
