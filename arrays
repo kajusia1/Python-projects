@@ -1,3 +1,18 @@
+# find distinct indexes of two numbers in 'numbers' that add up to target; numbers - non decreasing, there's exactly one solution
+
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        
+        i=len(numbers)-1
+        j=0
+        while i > j:    
+            while j<i and numbers[i]+numbers[j] <= target:
+                if numbers[i]+numbers[j] == target:
+                    return [j+1, i+1]
+                else:
+                    j+=1
+            i-=1
+
 ##find an element that appears more than n / 2 times where n is the length of the array
 
 import numpy as np
