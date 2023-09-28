@@ -1,4 +1,4 @@
---check if a str is a palindrome
+#check if a str is a palindrome
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:   
@@ -21,3 +21,11 @@ class Solution:
                 break
 
         return prefix
+
+# reverse the order of the words in str
+
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        s =s.split()
+        s= ' '.join(s[::-1])
+        return s
