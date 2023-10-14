@@ -13,6 +13,49 @@ class Solution:
                     j+=1
             i-=1
 
+# From an array of numbers return unique triplets of different index that sum up to 0
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        triplets = set()
+        nums.sort()
+
+        n,p,z = [], [], []
+
+        for num in nums:
+            if num <0:
+                n.append(num)
+            elif num >0:
+                p.append(num)
+            else:
+                z.append(num)
+# Sets dont contain duplicates
+        N,P = set(n), set(p)
+
+        if z:
+            for num in N:
+                if abs(num) in P:
+                    triplets.add((num, 0, abs(num)))
+
+        if len(z)>=3:
+            triplets.add((0,0,0))
+# We use len(n) because triplets may contain duplcates
+        for i in range(len(n)):
+            for j in range(i+1,len(n)):
+                complement = abs(n[i]+n[j])
+                if complement in P:
+                    triplets.add((n[i],n[j],complement))
+
+        for i in range(len(p)):
+            for j in range(i+1,len(p)):
+                complement = -1*(p[i]+p[j])
+                if complement in N:
+                    triplets.add((complement, p[i], p[j]))
+
+        return triplets
+            
+
+
 # You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
 # Find two lines that together with the x-axis form a container, such that the container contains the most water.
 class Solution:
