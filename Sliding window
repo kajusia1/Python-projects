@@ -1,5 +1,5 @@
 # Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray
- # whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.
+# whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.
 
 class Solution:
     def minSubArrayLen(self, target: int, nums: List[int]) -> int:
@@ -20,3 +20,23 @@ class Solution:
             return 0
         else:
             return min_length
+
+# Given a string s, find the length of the longest substring without repeating characters.
+ 
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+
+        max_length,right = 0,0
+        substring = ""
+
+        while right < len(s):
+            if s[right] in substring:
+                max_length = max(max_length, len(substring))
+                substring = substring[1:]
+                
+            else:
+                substring += s[right]
+                right+=1
+
+        max_length = max(max_length, len(substring))    
+        return max_length
