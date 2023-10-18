@@ -1,3 +1,20 @@
+# Check if a given board is valid
+
+def isValidSudoku(self, board: List[List[str]]) -> bool:
+    nums = []
+        
+    for i in range(9):
+        for j in range(9):
+            element = board[i][j]
+            if element != '.':
+                # Add to the list (row, element), (element, column), (smallsquare element)
+                nums += [(i,element), (element, j), (i//3, j//3, element)]
+
+    # Check if there are any duplicates
+    return len(nums) == len(set(nums))
+
+#Solve the board
+
 board=[
     [5,3,0,0,7,0,0,0,0],
     [6,0,0,1,9,5,0,0,0],
