@@ -1,3 +1,21 @@
+#Given an m x n matrix, return all elements of the matrix in spiral order.
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        spiral = []
+    
+        while True:
+            try:
+                #adds the first row to spiral
+                spiral+=matrix[0]
+                #removes the first row form matrix
+                matrix.pop(0)
+                #rotate the matrix to the right
+                matrix = (list(zip(*matrix)))[::-1]
+            except:
+                break
+
+        return spiral
+
 #Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's.
 class Solution:
     def setZeroes(self, matrix: List[List[int]]) -> None:
