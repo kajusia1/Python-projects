@@ -1,0 +1,16 @@
+# Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+# Each letter in magazine can only be used once in ransomNote.
+
+class Solution(object):
+    def canConstruct(self, ransomNote, magazine):
+        
+        chars = {}
+
+        for letter in magazine:
+            if letter not in chars: chars[letter] = 1
+            else: chars[letter] +=1
+        
+        for letter in ransomNote:
+            if letter in chars and chars[letter]>0: chars[letter] -=1
+            else: return False
+        return True
