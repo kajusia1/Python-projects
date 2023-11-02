@@ -14,3 +14,32 @@ class Solution(object):
             if letter in chars and chars[letter]>0: chars[letter] -=1
             else: return False
         return True
+
+# Given two strings s and t, determine if they are isomorphic.
+
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        
+        schars = {}
+        siso = []
+        a=1
+
+        for letter in s:
+            schars[letter] = a
+            a+=1
+        for letter in s:
+            siso.append(schars.get(letter))
+    
+        tchars = {}
+        tiso = []
+        b=1
+
+        for letter in t:
+            tchars[letter] = b
+            b+=1
+        for letter in t:
+            tiso.append(tchars.get(letter))
+        
+        if siso == tiso: return True
+        else: return False
+
