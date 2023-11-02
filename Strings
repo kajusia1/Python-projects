@@ -1,3 +1,18 @@
+# Given a pattern and a string s, find if s follows the same pattern.
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        map1 = []
+        map2 = []
+        for letter in pattern:
+            map1.append(pattern.index(letter))
+
+        s=s.split()
+        for word in s:
+            map2.append(s.index(word))
+        
+        return True if map1==map2 else False
+
+
 #check if a str is a palindrome
 class Solution:
     def isPalindrome(self, s: str) -> bool:   
