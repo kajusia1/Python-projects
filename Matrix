@@ -1,48 +1,48 @@
-# You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise)
-class Solution:
-    def rotate(self, matrix: List[List[int]]) -> None: 
-        matrix [:] = list(zip(*matrix[::-1]))
-# Anti-clockwise
-class Solution:
-    def rotate(self, matrix: List[List[int]]) -> None: 
-        matrix [:] = (list(zip(*matrix)))[::-1]
+#1. You are given an n x n 2D matrix representing an image, rotate the image by 90 degrees (clockwise)
+                class Solution:
+                    def rotate(self, matrix: List[List[int]]) -> None: 
+                        matrix [:] = list(zip(*matrix[::-1]))
+#2. Anti-clockwise
+                class Solution:
+                    def rotate(self, matrix: List[List[int]]) -> None: 
+                        matrix [:] = (list(zip(*matrix)))[::-1]
 
-# Given an m x n matrix, return all elements of the matrix in spiral order.
-class Solution:
-    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        spiral = []
-    
-        while True:
-            try:
-                #adds the first row to spiral
-                spiral+=matrix[0]
-                #removes the first row form matrix
-                matrix.pop(0)
-                #rotate the matrix to the right
-                matrix = (list(zip(*matrix)))[::-1]
-            except:
-                break
+#3. Given an m x n matrix, return all elements of the matrix in spiral order.
+                class Solution:
+                    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+                        spiral = []
+                    
+                        while True:
+                            try:
+                                #adds the first row to spiral
+                                spiral+=matrix[0]
+                                #removes the first row form matrix
+                                matrix.pop(0)
+                                #rotate the matrix to the right
+                                matrix = (list(zip(*matrix)))[::-1]
+                            except:
+                                break
+                
+                        return spiral
 
-        return spiral
-
-#Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's.
-class Solution:
-    def setZeroes(self, matrix: List[List[int]]) -> None:
-
-        zeros_row,zeros_column = [],[]
-
-        for i in range(len(matrix)):
-            for j in range(len(matrix[0])):
-                if 0 == matrix[i][j]:
-                    #print("zero", "row:", i, "column:", j)
-                    zeros_row.append(i)
-                    zeros_column.append(j)
-        
-        #Change rows
-        for zero in zeros_row:
-            for j in range(len(matrix[0])):
-                matrix[zero][j] = 0
-        #Change column 
+#4. Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's.
+                class Solution:
+                    def setZeroes(self, matrix: List[List[int]]) -> None:
+                
+                        zeros_row,zeros_column = [],[]
+                
+                        for i in range(len(matrix)):
+                            for j in range(len(matrix[0])):
+                                if 0 == matrix[i][j]:
+                                    #print("zero", "row:", i, "column:", j)
+                                    zeros_row.append(i)
+                                    zeros_column.append(j)
+                        
+                        #Change rows
+                        for zero in zeros_row:
+                            for j in range(len(matrix[0])):
+                                matrix[zero][j] = 0
+                        #Change column 
         for zero in zeros_column:
             for i in range(len(matrix)):
                 matrix[i][zero] = 0
