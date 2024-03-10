@@ -1,49 +1,51 @@
-#roman numerals to integers
-class Solution:
-    def romanToInt(self, s: str) -> int:
-        sum=[]
-        total_sum =0
-        s=[*s]
+#1. Roman numerals to integers
+                class Solution:
+                    def romanToInt(self, s: str) -> int:
+                        sum=[]
+                        total_sum =0
+                        s=[*s]
+                
+                        symbol = ['M', 'D', 'C', 'L', 'X', 'V', 'I']
+                        value = [1000, 500, 100, 50, 10, 5, 1]
+                        order = []  
+                
+                        for letter in s:
+                            sum.append(value[symbol.index(letter)])
+                
+                        for i in range(len(sum)-1):
+                            if sum[i] >=  sum[i+1]:
+                                total_sum = total_sum + sum[i]
+                            else:
+                                total_sum = total_sum - sum[i]
+                        total_sum= total_sum + sum[len(sum)-1]
+                        return total_sum
 
-        symbol = ['M', 'D', 'C', 'L', 'X', 'V', 'I']
-        value = [1000, 500, 100, 50, 10, 5, 1]
-        order = []  
+#2. Intigers to roman numerals
 
-        for letter in s:
-            sum.append(value[symbol.index(letter)])
-
-        for i in range(len(sum)-1):
-            if sum[i] >=  sum[i+1]:
-                total_sum = total_sum + sum[i]
-            else:
-                total_sum = total_sum - sum[i]
-        total_sum= total_sum + sum[len(sum)-1]
-        return total_sum
-
-class Solution:
-    def intToRoman(self, num: int) -> str:
-        symbol = ['M', 'D', 'C', 'L', 'X', 'V', 'I']
-        value = [1000, 500, 100, 50, 10, 5, 1]
-        order = []  
-
-        for i in range(7):
-            x = num // value[i]
-            order.append(x)
-            num = num - order[i]*value[i]
-            roman = ''
-            
-        for i in range(7):
-            if order[i]==4:
-                if len(order[i-1])== 1:
-                    order[i]= symbol[i] + symbol[i-2]
-                    order[i-1] = ''
-                else:
-                    order[i]= symbol[i] + symbol[i-1]
-            else:
-                order[i]= order[i]*symbol[i]
-        
-        for i in range(len(order)):
-            if order[i]!='':
+                class Solution:
+                    def intToRoman(self, num: int) -> str:
+                        symbol = ['M', 'D', 'C', 'L', 'X', 'V', 'I']
+                        value = [1000, 500, 100, 50, 10, 5, 1]
+                        order = []  
+                
+                        for i in range(7):
+                            x = num // value[i]
+                            order.append(x)
+                            num = num - order[i]*value[i]
+                            roman = ''
+                            
+                        for i in range(7):
+                            if order[i]==4:
+                                if len(order[i-1])== 1:
+                                    order[i]= symbol[i] + symbol[i-2]
+                                    order[i-1] = ''
+                                else:
+                                    order[i]= symbol[i] + symbol[i-1]
+                            else:
+                                order[i]= order[i]*symbol[i]
+                        
+                        for i in range(len(order)):
+                            if order[i]!='':
                 roman = roman + order[i]
         
         return roman
