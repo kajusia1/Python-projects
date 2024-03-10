@@ -1,103 +1,101 @@
-# find distinct indexes of two numbers in 'numbers' that add up to target; numbers - non decreasing, there's exactly one solution
+#1. Find distinct indexes of two numbers in 'numbers' that add up to target; numbers - non decreasing, there's exactly one solution
+    
+            class Solution:
+                def twoSum(self, numbers: List[int], target: int) -> List[int]:
+                    
+                    i=len(numbers)-1
+                    j=0
+                    while i > j:    
+                        while j<i and numbers[i]+numbers[j] <= target:
+                            if numbers[i]+numbers[j] == target:
+                                return [j+1, i+1]
+                            else:
+                                j+=1
+                        i-=1
 
-class Solution:
-    def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        
-        i=len(numbers)-1
-        j=0
-        while i > j:    
-            while j<i and numbers[i]+numbers[j] <= target:
-                if numbers[i]+numbers[j] == target:
-                    return [j+1, i+1]
-                else:
-                    j+=1
-            i-=1
-
-# From an array of numbers return unique triplets of different index that sum up to 0
-
-class Solution:
-    def threeSum(self, nums: List[int]) -> List[List[int]]:
-        triplets = set()
-        nums.sort()
-
-        n,p,z = [], [], []
-
-        for num in nums:
-            if num <0:
-                n.append(num)
-            elif num >0:
-                p.append(num)
-            else:
-                z.append(num)
-# Sets dont contain duplicates
-        N,P = set(n), set(p)
-
-        if z:
-            for num in N:
-                if abs(num) in P:
-                    triplets.add((num, 0, abs(num)))
-
-        if len(z)>=3:
-            triplets.add((0,0,0))
-# We use len(n) because triplets may contain duplcates
-        for i in range(len(n)):
-            for j in range(i+1,len(n)):
-                complement = abs(n[i]+n[j])
-                if complement in P:
-                    triplets.add((n[i],n[j],complement))
-
-        for i in range(len(p)):
-            for j in range(i+1,len(p)):
-                complement = -1*(p[i]+p[j])
-                if complement in N:
-                    triplets.add((complement, p[i], p[j]))
-
-        return triplets
+#2. From an array of numbers return unique triplets of different index that sum up to 0
             
-
-
-# You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+            class Solution:
+                def threeSum(self, nums: List[int]) -> List[List[int]]:
+                    triplets = set()
+                    nums.sort()
+            
+                    n,p,z = [], [], []
+            
+                    for num in nums:
+                        if num <0:
+                            n.append(num)
+                        elif num >0:
+                            p.append(num)
+                        else:
+                            z.append(num)
+#3. Sets dont contain duplicates
+                    N,P = set(n), set(p)
+            
+                    if z:
+                        for num in N:
+                            if abs(num) in P:
+                                triplets.add((num, 0, abs(num)))
+            
+                    if len(z)>=3:
+                        triplets.add((0,0,0))
+            # We use len(n) because triplets may contain duplcates
+                    for i in range(len(n)):
+                        for j in range(i+1,len(n)):
+                            complement = abs(n[i]+n[j])
+                            if complement in P:
+                                triplets.add((n[i],n[j],complement))
+            
+                    for i in range(len(p)):
+                        for j in range(i+1,len(p)):
+                            complement = -1*(p[i]+p[j])
+                            if complement in N:
+                                triplets.add((complement, p[i], p[j]))
+            
+                    return triplets
+            
+#4. You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
 # Find two lines that together with the x-axis form a container, such that the container contains the most water.
-class Solution:
-    def maxArea(self, height: List[int]) -> int:
+                class Solution:
+                    def maxArea(self, height: List[int]) -> int:
+                
+                        left=0
+                        right=len(height)-1
+                        maxArea=0
+                        while left < right:
+                            maxArea = max(maxArea, min(height[left], height[right]) * (right-left))
+                            
+                            if height[left] < height[right]:
+                                left+=1
+                            else:
+                                right-=1
+                        
+                        return maxArea
 
-        left=0
-        right=len(height)-1
-        maxArea=0
-        while left < right:
-            maxArea = max(maxArea, min(height[left], height[right]) * (right-left))
-            
-            if height[left] < height[right]:
-                left+=1
-            else:
-                right-=1
-        
-        return maxArea
+#5. find an element that appears more than n / 2 times where n is the length of the array
 
-##find an element that appears more than n / 2 times where n is the length of the array
+                import numpy as np
+                
+                class Solution:
+                    def majorityElement(self, nums: List[int]) -> int:
+                        unique_nums = np.array(list(dict.fromkeys(nums)))
+                        for i in range(len(unique_nums)):
+                            if nums.count(unique_nums[i]) > len(nums)/2:
+                                return unique_nums[i]
+                
+                #rotate the array to the right by k steps
+                class Solution:
+                    def rotate(self, nums: List[int], k: int) -> None:
+                        nums[:] = nums[len(nums)-k::] + nums[:len(nums)-k]
+                
+                #remove an element
+                class Solution:
+                    def removeElement(self, nums: List[int], val: int) -> int:
+                
+                        for i in range(nums.count(val)):
+                            nums.remove(val)
 
-import numpy as np
-
-class Solution:
-    def majorityElement(self, nums: List[int]) -> int:
-        unique_nums = np.array(list(dict.fromkeys(nums)))
-        for i in range(len(unique_nums)):
-            if nums.count(unique_nums[i]) > len(nums)/2:
-                return unique_nums[i]
-
-#rotate the array to the right by k steps
-class Solution:
-    def rotate(self, nums: List[int], k: int) -> None:
-        nums[:] = nums[len(nums)-k::] + nums[:len(nums)-k]
-
-#remove an element
-class Solution:
-    def removeElement(self, nums: List[int], val: int) -> int:
-
-        for i in range(nums.count(val)):
-            nums.remove(val)
-
-#remove duplicates 
-class Solution:
-    def removeDuplicates(self, nums: List[int]) -> int:
-        nums[::] = list(dict.fromkeys(nums))        
+#5. Remove duplicates 
+                class Solution:
+                    def removeDuplicates(self, nums: List[int]) -> int:
+                        nums[::] = list(dict.fromkeys(nums))        
