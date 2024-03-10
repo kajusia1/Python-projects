@@ -1,103 +1,103 @@
-# Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+#1. Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
 # Each letter in magazine can only be used once in ransomNote.
 
-class Solution(object):
-    def canConstruct(self, ransomNote, magazine):
-        
-        chars = {}
+                class Solution(object):
+                    def canConstruct(self, ransomNote, magazine):
+                        
+                        chars = {}
+                
+                        for letter in magazine:
+                            if letter not in chars: chars[letter] = 1
+                            else: chars[letter] +=1
+                        
+                        for letter in ransomNote:
+                            if letter in chars and chars[letter]>0: chars[letter] -=1
+                            else: return False
+                        return True
 
-        for letter in magazine:
-            if letter not in chars: chars[letter] = 1
-            else: chars[letter] +=1
-        
-        for letter in ransomNote:
-            if letter in chars and chars[letter]>0: chars[letter] -=1
-            else: return False
-        return True
+#2. Given two strings s and t, determine if they are isomorphic.
 
-# Given two strings s and t, determine if they are isomorphic.
-
-class Solution:
-    def isIsomorphic(self, s: str, t: str) -> bool:
-        
-        schars = {}
-        siso = []
-        a=1
-
-        for letter in s:
-            schars[letter] = a
-            a+=1
-        for letter in s:
-            siso.append(schars.get(letter))
-    
-        tchars = {}
-        tiso = []
-        b=1
-
-        for letter in t:
-            tchars[letter] = b
-            b+=1
-        for letter in t:
-            tiso.append(tchars.get(letter))
-        
-        if siso == tiso: return True
-        else: return False
+                class Solution:
+                    def isIsomorphic(self, s: str, t: str) -> bool:
+                        
+                        schars = {}
+                        siso = []
+                        a=1
+                
+                        for letter in s:
+                            schars[letter] = a
+                            a+=1
+                        for letter in s:
+                            siso.append(schars.get(letter))
+                    
+                        tchars = {}
+                        tiso = []
+                        b=1
+                
+                        for letter in t:
+                            tchars[letter] = b
+                            b+=1
+                        for letter in t:
+                            tiso.append(tchars.get(letter))
+                        
+                        if siso == tiso: return True
+                        else: return False
 # different solution
 
-class Solution:
-    def isIsomorphic(self, s: str, t: str) -> bool:
-        
-        map1 = []
-        map2 = []
-        for letter in s:
-            map1.append(s.index(letter))
-        for letter in t:
-            map2.append(t.index(letter))
-        
-        if map1==map2: return True
-        else: return False
+                class Solution:
+                    def isIsomorphic(self, s: str, t: str) -> bool:
+                        
+                        map1 = []
+                        map2 = []
+                        for letter in s:
+                            map1.append(s.index(letter))
+                        for letter in t:
+                            map2.append(t.index(letter))
+                        
+                        if map1==map2: return True
+                        else: return False
 
-# Given two strings s and t, return true if t is an anagram of s, and false otherwise.
-class Solution:
-    def isAnagram(self, s: str, t: str) -> bool:
-        smap = {}
-        sletters = []
-        tmap = {}
-        tletters=[]
-        
-        for letter in s:
-            if letter not in sletters:
-                find = len(re.findall(letter, s))
-                smap[letter] = find
-                sletters.append(letter)
-            else: continue
+#3. Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+                class Solution:
+                    def isAnagram(self, s: str, t: str) -> bool:
+                        smap = {}
+                        sletters = []
+                        tmap = {}
+                        tletters=[]
+                        
+                        for letter in s:
+                            if letter not in sletters:
+                                find = len(re.findall(letter, s))
+                                smap[letter] = find
+                                sletters.append(letter)
+                            else: continue
+                
+                        for letter in t:
+                            if letter not in tletters:
+                                find = len(re.findall(letter, t))
+                                tmap[letter] = find
+                                tletters.append(letter)
+                            else:
+                                continue
+                
+                        smap = dict(sorted(smap.items()))
+                        tmap = dict(sorted(tmap.items()))
+                        
+                        return True if smap == tmap else False
 
-        for letter in t:
-            if letter not in tletters:
-                find = len(re.findall(letter, t))
-                tmap[letter] = find
-                tletters.append(letter)
-            else:
-                continue
+#4. Return the maximal number of repetrions of one item from the list nums
 
-        smap = dict(sorted(smap.items()))
-        tmap = dict(sorted(tmap.items()))
-        
-        return True if smap == tmap else False
-
-# Return the maximal number of repetrions of one item from the list nums
-
-class Solution:
-    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
-        nums2 = []
-        map = {}
-        for number in nums:
-            if number not in nums2:
-                map[number]=1
-                nums2.append(number)
-            else:
-                map[number]+=1
-
-        return max(map.values())
+                class Solution:
+                    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+                        nums2 = []
+                        map = {}
+                        for number in nums:
+                            if number not in nums2:
+                                map[number]=1
+                                nums2.append(number)
+                            else:
+                                map[number]+=1
+                
+                        return max(map.values())
 
             
