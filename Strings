@@ -1,69 +1,70 @@
-# Given a pattern and a string s, find if s follows the same pattern.
-class Solution:
-    def wordPattern(self, pattern: str, s: str) -> bool:
-        map1 = []
-        map2 = []
-        for letter in pattern:
-            map1.append(pattern.index(letter))
+#1. Given a pattern and a string s, find if s follows the same pattern.
 
-        s=s.split()
-        for word in s:
-            map2.append(s.index(word))
-        
-        return True if map1==map2 else False
+                class Solution:
+                    def wordPattern(self, pattern: str, s: str) -> bool:
+                        map1 = []
+                        map2 = []
+                        for letter in pattern:
+                            map1.append(pattern.index(letter))
+                
+                        s=s.split()
+                        for word in s:
+                            map2.append(s.index(word))
+                        
+                        return True if map1==map2 else False
 
 
-#check if a str is a palindrome
-class Solution:
-    def isPalindrome(self, s: str) -> bool:   
-        s= [*re.sub('[\W_]', '', s).lower()]   # re.sub('[\W_]', '', s) removes all non-alphanumeric characters, [*str] splits str into an array of char
+#2. Check if a str is a palindrome
+                class Solution:
+                    def isPalindrome(self, s: str) -> bool:   
+                        s= [*re.sub('[\W_]', '', s).lower()]   # re.sub('[\W_]', '', s) removes all non-alphanumeric characters, [*str] splits str into an array of char
+                
+                        return True if s==s[::-1] else False
+                
+                #find the longest common prefix in the list of strings
+                class Solution:
+                    def longestCommonPrefix(self, s: List[str]) -> str:
+                        s=sorted(s)
+                
+                        prefix =""
+                
+                        for i in range(min(len(s[0]), len(s[-1]))):
+                            if s[0][0:i+1] == s[-1][0:i+1]:
+                                prefix = s[0][0:i+1]
+                                continue
+                            else:
+                                break
+                
+                        return prefix
 
-        return True if s==s[::-1] else False
+#3. Reverse the order of the words in str
+                class Solution:
+                    def reverseWords(self, s: str) -> str:
+                        s =s.split()
+                        s= ' '.join(s[::-1])
+                        return s
 
-#find the longest common prefix in the list of strings
-class Solution:
-    def longestCommonPrefix(self, s: List[str]) -> str:
-        s=sorted(s)
+#4. Find the index of the first occurence of 'needle' str in 'haystack' str
+                class Solution:
+                    def strStr(self, haystack: str, needle: str) -> int:
+                        result=re.search(needle, haystack)
+                
+                        if result != None:
+                            return result.start()
+                        else:
+                            return -1
 
-        prefix =""
-
-        for i in range(min(len(s[0]), len(s[-1]))):
-            if s[0][0:i+1] == s[-1][0:i+1]:
-                prefix = s[0][0:i+1]
-                continue
-            else:
-                break
-
-        return prefix
-
-# reverse the order of the words in str
-class Solution:
-    def reverseWords(self, s: str) -> str:
-        s =s.split()
-        s= ' '.join(s[::-1])
-        return s
-
-# find the index of the first occurence of 'needle' str in 'haystack' str
-class Solution:
-    def strStr(self, haystack: str, needle: str) -> int:
-        result=re.search(needle, haystack)
-
-        if result != None:
-            return result.start()
-        else:
-            return -1
-
-#check if str s is a subsequence of str t, s,t- lowercase
-class Solution:
-    def isSubsequence(self, s: str, t: str) -> bool:
-
-        for i in range(len(s)):
-            if re.search(s[i],t) != None:
-                t= t[re.search(s[i],t).start()+1:]
-                continue
-            else:
-                return False
-                break
+#5. Check if str s is a subsequence of str t, s,t- lowercase
+                class Solution:
+                    def isSubsequence(self, s: str, t: str) -> bool:
+                
+                        for i in range(len(s)):
+                            if re.search(s[i],t) != None:
+                                t= t[re.search(s[i],t).start()+1:]
+                                continue
+                            else:
+                                return False
+                                break
 
         return True
        
